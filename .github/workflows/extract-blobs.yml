@@ -70,7 +70,7 @@ jobs:
         && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
         && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
         && sudo apt update \
-        && sudo apt install gh -y
+        && sudo apt install gh git -y
         
     - name: Identity
       run: |
@@ -85,7 +85,7 @@ jobs:
     - name: Clone Device Tree
       run: |
         cd workspace
-        git clone --depth=1 ${{ env.DTR }} -b ${{ env.DTB }} ./android/device/${{ env.DVN }}/${{ env.DCN }}
+        git clone ${{ env.DTR }} -b ${{ env.DTB }} ./android/device/${{ env.DVN }}/${{ env.DCN }}
 
     - name: Clone LineageOS Tools and Utils
       run: |
